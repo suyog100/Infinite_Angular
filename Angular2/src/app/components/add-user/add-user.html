@@ -1,0 +1,7 @@
+<div class="bg-white p-4 flex flex-row justify-center">
+    <form class="flex flex-col gap-4 w-lg max-w-lg p-4 border border-stone-300 rounded-lg shadow-md" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+        <input class="border border-stone-400 p-2 rounded-lg" placeholder="username" type="text">
+        <input class="border border-stone-400 p-2 rounded-lg" placeholder="image-link" type="text">
+        <button type="submit" class="bg-blue-600 text-white border p-2 rounded-lg">Submit</button>
+    </form>
+</div>

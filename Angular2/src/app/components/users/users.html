@@ -1,0 +1,22 @@
+<div class="grid grid-cols-3 w-full p-4 bg-gray-100">
+    @if (users.length === 0) {
+        <p>Loading...</p>
+    }
+
+    @for(user of users; track $index) {
+        <div class="max-w-96 flex flex-col items-center shadow rounded-md">
+            <div class="h-32 w-32 overflow-hidden">
+                <a routerLink="/users/user/{{user.login}}">
+                    <img src="{{user.avatar_url}}" alt="image" class="h-full w-full">
+                </a>
+            </div>
+            <div>
+                {{user.login}}
+            </div>
+            <div>
+                {{user.url}}
+            </div>
+        </div>
+    }
+    
+</div>
