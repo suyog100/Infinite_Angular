@@ -1,7 +1,81 @@
-<div class="bg-white p-4 flex flex-row justify-center">
-    <form class="flex flex-col gap-4 w-lg max-w-lg p-4 border border-stone-300 rounded-lg shadow-md" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-        <input class="border border-stone-400 p-2 rounded-lg" placeholder="username" type="text">
-        <input class="border border-stone-400 p-2 rounded-lg" placeholder="image-link" type="text">
+<!-- <div class="bg-white p-4 flex flex-row justify-center">
+    <form class="flex flex-col gap-4 w-lg max-w-lg p-4 border border-stone-300 rounded-lg shadow-md" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)"> -->
+        <!-- binding using ngModel and name -->
+        <!-- <input 
+            class="border border-stone-400 p-2 rounded-lg" 
+            placeholder="username" 
+            name="username" 
+            type="text" 
+            ngModel 
+            #usernameRef="ngModel" 
+            required 
+            minlength="3"
+            maxlength="5"
+        />
+        @if (usernameRef.invalid && usernameRef.dirty && usernameRef.errors?.["minLength"]) {
+            <div class="text-red-500">Error occured</div>
+        } -->
+        
+
+        <!-- two way binding -->
+        <!-- <input 
+            class="border border-stone-400 p-2 rounded-lg" 
+            placeholder="username" 
+            name="username" 
+            type="text" 
+            #usernameRef="ngModel"
+            minlength="3"
+            maxlength="5"
+            [(ngModel)]="usernameFromts"
+        />
+        @if (usernameRef.invalid && usernameRef.dirty && usernameRef.errors?.["minlength"]) {
+            <div class="text-red-500">Username should be atleast 3 characters</div>
+        }
+        @if (usernameRef.invalid && usernameRef.dirty && usernameRef.errors?.["maxlength"]) {
+            <div class="text-red-500">Username should not exceed 5 chars</div>
+        }
+
+        <input 
+            class="border border-stone-400 p-2 rounded-lg" 
+            placeholder="image-link" 
+            name="image" 
+            type="text" 
+            [(ngModel)]="imageFromts"
+        />
         <button type="submit" class="bg-blue-600 text-white border p-2 rounded-lg">Submit</button>
+    </form>
+</div> -->
+
+
+<!-- REACTIVE FORM -->
+<div class="bg-white p-4 flex flex-row justify-center">
+    <form 
+        class="flex flex-col gap-4 w-lg max-w-lg p-4 border border-stone-300 rounded-lg shadow-md" 
+        [formGroup]="userForm"
+        (submit)="submitForm()"
+    >
+        <input 
+            class="border border-stone-400 p-2 rounded-lg" 
+            type="text"
+            placeholder="username"
+            formControlName="username"
+        />
+        @if (userForm.get("username")?.errors && userForm.get("username")?.errors?.["required"]) {
+            <div>Field is required</div>
+        }
+
+        <input 
+            class="border border-stone-400 p-2 rounded-lg" 
+            placeholder="image-link" 
+            type="text" 
+            formControlName="image"
+        />
+        <button 
+            type="submit" 
+            class="bg-blue-600 text-white border p-2 rounded-lg" 
+            [disabled]="userForm.invalid"
+        >
+            Submit
+        </button>
     </form>
 </div>
